@@ -11,8 +11,6 @@ public class ClickHandler : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _button = GetComponent<Button>();
-
-        _button.onClick.AddListener(OnButtonClicked);
     }
 
     private void OnEnable()

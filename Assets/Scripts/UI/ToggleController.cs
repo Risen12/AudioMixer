@@ -9,6 +9,7 @@ public class ToggleController : MonoBehaviour
     [SerializeField] private Image _currentSprite;
     [SerializeField] private Sprite _disabledStateSprite;
     [SerializeField] private Sprite _enabledStateSprite;
+    [SerializeField] private ToggleSoundChanger _soundChanger;
 
     private Toggle _toggle;
     private string _disabledText;
@@ -29,7 +30,7 @@ public class ToggleController : MonoBehaviour
 
     private void OnDisable()
     {
-        _toggle.onValueChanged.RemoveAllListeners();
+        _toggle.onValueChanged.RemoveListener(SwitchState);
     }
 
     private void SwitchState(bool state)
@@ -38,11 +39,13 @@ public class ToggleController : MonoBehaviour
         {
             _currentSprite.sprite = _enabledStateSprite;
             _text.text = _enabledText;
+            _soundChanger.Enable();
         }
         else
         {
             _currentSprite.sprite = _disabledStateSprite;
             _text.text = _disabledText;
+            _soundChanger.Disable();
         }
     }
 }
